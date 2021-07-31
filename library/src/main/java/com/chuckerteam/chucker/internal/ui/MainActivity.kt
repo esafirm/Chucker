@@ -6,11 +6,13 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.view.menu.SubMenuBuilder
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.chuckerteam.chucker.R
+import com.chuckerteam.chucker.api.extramodule.ExtraModuleRegistry
 import com.chuckerteam.chucker.databinding.ChuckerActivityMainBinding
 import com.chuckerteam.chucker.internal.data.model.DialogData
 import com.chuckerteam.chucker.internal.support.TransactionListDetailsSharable
@@ -31,6 +33,8 @@ internal class MainActivity :
     private lateinit var mainBinding: ChuckerActivityMainBinding
     private lateinit var transactionsAdapter: TransactionAdapter
 
+    private val extraModules by lazy { ExtraModuleRegistry.extraModules }
+
     private val applicationName: CharSequence
         get() = applicationInfo.loadLabel(packageManager)
 
@@ -50,7 +54,12 @@ internal class MainActivity :
             tutorialLink.movementMethod = LinkMovementMethod.getInstance()
             transactionsRecyclerView.apply {
                 setHasFixedSize(true)
-                addItemDecoration(DividerItemDecoration(this@MainActivity, DividerItemDecoration.VERTICAL))
+                addItemDecoration(
+                    DividerItemDecoration(
+                        this@MainActivity,
+                        DividerItemDecoration.VERTICAL
+                    )
+                )
                 adapter = transactionsAdapter
             }
         }
@@ -65,8 +74,20 @@ internal class MainActivity :
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.chucker_transactions_list, menu)
+        val haveExtraModule = extraModules.isNotEmpty()
+        menuInflater.inflate(
+            if (haveExtraModule) {
+                R.menu.chucker_transactions_list_extra
+            } else {
+                R.menu.chucker_transactions_list
+            }, menu
+        )
+
+        if (haveExtraModule) {
+            setupExtraModules(menu)
+        }
         setUpSearch(menu)
+
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -77,7 +98,23 @@ internal class MainActivity :
         searchView.setIconifiedByDefault(true)
     }
 
+    private fun setupExtraModules(menu: Menu) {
+        val subMenu = menu.findItem(R.id.more).subMenu
+        subMenu.clear()
+        extraModules.forEach {
+            subMenu.add(it.moduleName)
+        }
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle extra modules
+        extraModules.forEach {
+            if (it.moduleName == item.title) {
+                it.onNavigateToModule(this)
+                return true
+            }
+        }
+
         return when (item.itemId) {
             R.id.clear -> {
                 showDialog(
@@ -115,7 +152,11 @@ internal class MainActivity :
     private fun exportTransactions() = lifecycleScope.launch {
         val transactions = viewModel.getAllTransactions()
         if (transactions.isNullOrEmpty()) {
-            Toast.makeText(this@MainActivity, R.string.chucker_export_empty_text, Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this@MainActivity,
+                R.string.chucker_export_empty_text,
+                Toast.LENGTH_SHORT
+            ).show()
             return@launch
         }
 

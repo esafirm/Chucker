@@ -4,8 +4,12 @@ import android.os.Bundle
 import android.os.StrictMode
 import android.text.method.LinkMovementMethod
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.chuckerteam.chucker.api.Chucker
+import com.chuckerteam.chucker.api.extramodule.ExtraModuleRegistry
+import com.chuckerteam.chucker.internal.featureflag.DefaultFeatureFlagStore
+import com.chuckerteam.chucker.internal.featureflag.FeatureFlagModule
 import com.chuckerteam.chucker.sample.databinding.ActivityMainSampleBinding
 
 private val interceptorTypeSelector = InterceptorTypeSelector()
@@ -27,6 +31,17 @@ class MainActivity : AppCompatActivity() {
 
         mainBinding = ActivityMainSampleBinding.inflate(layoutInflater)
 
+        ExtraModuleRegistry.addExtraModule(
+            FeatureFlagModule(
+                passedStore = DefaultFeatureFlagStore(applicationContext),
+                initialFlags = { store ->
+                    SampleFeatureFlag.values().forEach {
+                        store.set(it, false)
+                    }
+                }
+            )
+        )
+
         with(mainBinding) {
             setContentView(root)
             doHttp.setOnClickListener {
@@ -37,6 +52,13 @@ class MainActivity : AppCompatActivity() {
 
             launchChuckerDirectly.visibility = if (Chucker.isOp) View.VISIBLE else View.GONE
             launchChuckerDirectly.setOnClickListener { launchChuckerDirectly() }
+
+            showAllFlags?.setOnClickListener {
+                val text = SampleFeatureFlag.values().joinToString(separator = "\n") {
+                    "${it.name} : ${it.isEnabled()}"
+                }
+                Toast.makeText(applicationContext, text, Toast.LENGTH_SHORT).show()
+            }
 
             interceptorTypeLabel.movementMethod = LinkMovementMethod.getInstance()
             useApplicationInterceptor.setOnCheckedChangeListener { _, isChecked ->
