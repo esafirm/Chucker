@@ -1,23 +1,29 @@
-package com.chuckerteam.chucker.internal.featureflag
+package com.chucker.featureflag.api
 
 import android.content.Context
+import com.chucker.featureflag.api.store.FeatureFlagStore
+import com.chucker.featureflag.internal.ui.FeatureFlagActivity
 import com.chuckerteam.chucker.api.extramodule.ExtraModule
-import com.chuckerteam.chucker.internal.featureflag.ui.FeatureFlagActivity
 
-public class FeatureFlagModule(
+class FeatureFlagModule(
     passedStore: FeatureFlagStore,
-    initialFlags: (FeatureFlagStore) -> Unit
+    initialFlags: (FeatureFlagStore) -> Unit,
+    onLoad: (FeatureFlagStore) -> Unit = {}
 ) : ExtraModule {
 
-    public companion object {
+    companion object {
         internal lateinit var store: FeatureFlagStore
+
+        internal const val KEY_INITIALIZED = "initialized"
     }
 
     init {
         store = passedStore
-        val isInitialized = store.get(SimpleFeatureFlag("initialized"))
+        val isInitialized = store.get(KEY_INITIALIZED)
         if (isInitialized.not()) {
             initialFlags(store)
+        } else {
+            onLoad(store)
         }
     }
 

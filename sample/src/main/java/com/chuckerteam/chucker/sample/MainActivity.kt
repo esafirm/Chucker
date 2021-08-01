@@ -6,10 +6,11 @@ import android.text.method.LinkMovementMethod
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.chucker.featureflag.api.FeatureFlagModule
+import com.chucker.featureflag.api.store.ObservedFeatureFlagStore
+import com.chucker.featureflag.api.store.PersistentFeatureFlagStore
 import com.chuckerteam.chucker.api.Chucker
 import com.chuckerteam.chucker.api.extramodule.ExtraModuleRegistry
-import com.chuckerteam.chucker.internal.featureflag.DefaultFeatureFlagStore
-import com.chuckerteam.chucker.internal.featureflag.FeatureFlagModule
 import com.chuckerteam.chucker.sample.databinding.ActivityMainSampleBinding
 
 private val interceptorTypeSelector = InterceptorTypeSelector()
@@ -33,11 +34,21 @@ class MainActivity : AppCompatActivity() {
 
         ExtraModuleRegistry.addExtraModule(
             FeatureFlagModule(
-                passedStore = DefaultFeatureFlagStore(applicationContext),
+                passedStore = ObservedFeatureFlagStore(
+                    PersistentFeatureFlagStore(applicationContext)
+                ) { featureName, isEnabled ->
+                    SampleFeatureFlag.valueOf(featureName).isEnabled = isEnabled
+                },
                 initialFlags = { store ->
                     SampleFeatureFlag.values().forEach {
-                        store.set(it, false)
+                        store.set(it.name, false)
                     }
+                },
+                onLoad = { store ->
+                    store.getAll()
+                        .forEach {
+                            SampleFeatureFlag.valueOf(it.first).isEnabled = it.second
+                        }
                 }
             )
         )
@@ -55,7 +66,7 @@ class MainActivity : AppCompatActivity() {
 
             showAllFlags?.setOnClickListener {
                 val text = SampleFeatureFlag.values().joinToString(separator = "\n") {
-                    "${it.name} : ${it.isEnabled()}"
+                    "${it.name} : ${it.isEnabled}"
                 }
                 Toast.makeText(applicationContext, text, Toast.LENGTH_SHORT).show()
             }

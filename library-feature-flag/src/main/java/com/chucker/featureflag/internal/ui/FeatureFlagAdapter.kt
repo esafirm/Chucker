@@ -1,14 +1,14 @@
-package com.chuckerteam.chucker.internal.featureflag.ui
+package com.chucker.featureflag.internal.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.chucker.featureflag.api.ManagedFeatureFlag
 import com.chuckerteam.chucker.databinding.ChuckerListItemFeatureFlagBinding
-import com.chuckerteam.chucker.internal.featureflag.FeatureFlag
 
 internal class FeatureFlagAdapter :
-    ListAdapter<FeatureFlag, FeatureFlagAdapter.FeatureFlagViewHolder>(
+    ListAdapter<ManagedFeatureFlag, FeatureFlagAdapter.FeatureFlagViewHolder>(
         FeatureFlagDiffcallback
     ) {
 
@@ -29,7 +29,7 @@ internal class FeatureFlagAdapter :
     ) : RecyclerView.ViewHolder(itemBinding.root) {
 
 
-        fun bind(featureFlag: FeatureFlag) {
+        fun bind(featureFlag: ManagedFeatureFlag) {
             itemBinding.itemSwitch.run {
                 text = featureFlag.name
                 setOnCheckedChangeListener(null)
