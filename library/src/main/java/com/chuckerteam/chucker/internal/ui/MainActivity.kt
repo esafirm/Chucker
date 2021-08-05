@@ -6,13 +6,12 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.view.menu.SubMenuBuilder
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.chuckerteam.chucker.R
-import com.chuckerteam.chucker.api.extramodule.ExtraModuleRegistry
+import com.chuckerteam.chucker.api.extramodule.ChuckerExtraModuleRegistry
 import com.chuckerteam.chucker.databinding.ChuckerActivityMainBinding
 import com.chuckerteam.chucker.internal.data.model.DialogData
 import com.chuckerteam.chucker.internal.support.TransactionListDetailsSharable
@@ -33,7 +32,7 @@ internal class MainActivity :
     private lateinit var mainBinding: ChuckerActivityMainBinding
     private lateinit var transactionsAdapter: TransactionAdapter
 
-    private val extraModules by lazy { ExtraModuleRegistry.extraModules }
+    private val extraModules by lazy { ChuckerExtraModuleRegistry.extraModules }
 
     private val applicationName: CharSequence
         get() = applicationInfo.loadLabel(packageManager)
