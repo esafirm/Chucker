@@ -3,13 +3,13 @@ package com.chucker.featureflag.api
 import android.content.Context
 import com.chucker.featureflag.api.store.FeatureFlagStore
 import com.chucker.featureflag.internal.ui.FeatureFlagActivity
-import com.chuckerteam.chucker.api.extramodule.ExtraModule
+import com.chuckerteam.chucker.api.extramodule.ChuckerExtraModule
 
 class FeatureFlagModule(
     passedStore: FeatureFlagStore,
     initialFlags: (FeatureFlagStore) -> Unit,
     onLoad: (FeatureFlagStore) -> Unit = {}
-) : ExtraModule {
+) : ChuckerExtraModule {
 
     companion object {
         internal lateinit var store: FeatureFlagStore
@@ -22,6 +22,9 @@ class FeatureFlagModule(
         val isInitialized = store.get(KEY_INITIALIZED)
         if (isInitialized.not()) {
             initialFlags(store)
+
+            // Flag as initialized
+            store.set(KEY_INITIALIZED, true)
         } else {
             onLoad(store)
         }

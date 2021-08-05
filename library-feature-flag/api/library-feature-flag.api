@@ -1,4 +1,4 @@
-public final class com/chucker/featureflag/api/FeatureFlagModule : com/chuckerteam/chucker/api/extramodule/ExtraModule {
+public final class com/chucker/featureflag/api/FeatureFlagModule : com/chuckerteam/chucker/api/extramodule/ChuckerExtraModule {
 	public static final field Companion Lcom/chucker/featureflag/api/FeatureFlagModule$Companion;
 	public fun <init> (Lcom/chucker/featureflag/api/store/FeatureFlagStore;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;)V
 	public synthetic fun <init> (Lcom/chucker/featureflag/api/store/FeatureFlagStore;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
@@ -33,13 +33,6 @@ public abstract interface class com/chucker/featureflag/api/store/FeatureFlagSto
 	public abstract fun set (Ljava/lang/String;Z)V
 }
 
-public final class com/chucker/featureflag/api/store/MapFeatureFlagStore : com/chucker/featureflag/api/store/FeatureFlagStore {
-	public fun <init> ()V
-	public fun get (Ljava/lang/String;)Z
-	public fun getAll ()Ljava/util/List;
-	public fun set (Ljava/lang/String;Z)V
-}
-
 public final class com/chucker/featureflag/api/store/ObservedFeatureFlagStore : com/chucker/featureflag/api/store/FeatureFlagStore {
 	public fun <init> (Lcom/chucker/featureflag/api/store/FeatureFlagStore;Lkotlin/jvm/functions/Function2;)V
 	public fun get (Ljava/lang/String;)Z
@@ -52,5 +45,12 @@ public final class com/chucker/featureflag/api/store/PersistentFeatureFlagStore 
 	public fun get (Ljava/lang/String;)Z
 	public fun getAll ()Ljava/util/List;
 	public fun set (Ljava/lang/String;Z)V
+}
+
+public final class com/chucker/featureflag/internal/ui/FeatureFlagViewModel : androidx/lifecycle/ViewModel {
+	public fun <init> ()V
+	public final fun getFeatureFlags ()Landroidx/lifecycle/MutableLiveData;
+	public final fun loadFlags (Ljava/lang/String;)V
+	public static synthetic fun loadFlags$default (Lcom/chucker/featureflag/internal/ui/FeatureFlagViewModel;Ljava/lang/String;ILjava/lang/Object;)V
 }
 

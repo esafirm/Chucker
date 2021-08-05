@@ -4,13 +4,13 @@ import android.app.Application
 import com.chucker.featureflag.api.FeatureFlagModule
 import com.chucker.featureflag.api.store.ObservedFeatureFlagStore
 import com.chucker.featureflag.api.store.PersistentFeatureFlagStore
-import com.chuckerteam.chucker.api.extramodule.ExtraModuleRegistry
+import com.chuckerteam.chucker.api.extramodule.ChuckerExtraModuleRegistry
 
 class DebugSampleApp : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        ExtraModuleRegistry.addExtraModule(
+        ChuckerExtraModuleRegistry.addExtraModule(
             FeatureFlagModule(
                 passedStore = ObservedFeatureFlagStore(
                     PersistentFeatureFlagStore(applicationContext)

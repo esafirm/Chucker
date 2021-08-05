@@ -21,7 +21,7 @@ class PersistentFeatureFlagStore(context: Context) : FeatureFlagStore {
 
     override fun getAll(): List<Pair<String, Boolean>> {
         return store.all
-            .filter { it.key != FeatureFlagModule.KEY_INITIALIZED && it.value is Boolean }
+            .filter { it.key != FeatureFlagModule.KEY_INITIALIZED }
             .map { it.key to it.value as Boolean }
     }
 }
