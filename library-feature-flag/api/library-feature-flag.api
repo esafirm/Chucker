@@ -1,0 +1,56 @@
+public final class com/chucker/featureflag/api/FeatureFlagModule : com/chuckerteam/chucker/api/extramodule/ExtraModule {
+	public static final field Companion Lcom/chucker/featureflag/api/FeatureFlagModule$Companion;
+	public fun <init> (Lcom/chucker/featureflag/api/store/FeatureFlagStore;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;)V
+	public synthetic fun <init> (Lcom/chucker/featureflag/api/store/FeatureFlagStore;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun getModuleName ()Ljava/lang/String;
+	public fun onNavigateToModule (Landroid/content/Context;)V
+}
+
+public final class com/chucker/featureflag/api/FeatureFlagModule$Companion {
+}
+
+public abstract interface class com/chucker/featureflag/api/ManagedFeatureFlag {
+	public abstract fun getName ()Ljava/lang/String;
+	public abstract fun isEnabled ()Z
+	public abstract fun setEnabled (Z)V
+}
+
+public final class com/chucker/featureflag/api/ManagedFeatureFlag$DefaultImpls {
+	public static fun isEnabled (Lcom/chucker/featureflag/api/ManagedFeatureFlag;)Z
+	public static fun setEnabled (Lcom/chucker/featureflag/api/ManagedFeatureFlag;Z)V
+}
+
+public final class com/chucker/featureflag/api/SimpleManagerFeatureFlag : com/chucker/featureflag/api/ManagedFeatureFlag {
+	public fun <init> (Ljava/lang/String;)V
+	public fun getName ()Ljava/lang/String;
+	public fun isEnabled ()Z
+	public fun setEnabled (Z)V
+}
+
+public abstract interface class com/chucker/featureflag/api/store/FeatureFlagStore {
+	public abstract fun get (Ljava/lang/String;)Z
+	public abstract fun getAll ()Ljava/util/List;
+	public abstract fun set (Ljava/lang/String;Z)V
+}
+
+public final class com/chucker/featureflag/api/store/MapFeatureFlagStore : com/chucker/featureflag/api/store/FeatureFlagStore {
+	public fun <init> ()V
+	public fun get (Ljava/lang/String;)Z
+	public fun getAll ()Ljava/util/List;
+	public fun set (Ljava/lang/String;Z)V
+}
+
+public final class com/chucker/featureflag/api/store/ObservedFeatureFlagStore : com/chucker/featureflag/api/store/FeatureFlagStore {
+	public fun <init> (Lcom/chucker/featureflag/api/store/FeatureFlagStore;Lkotlin/jvm/functions/Function2;)V
+	public fun get (Ljava/lang/String;)Z
+	public fun getAll ()Ljava/util/List;
+	public fun set (Ljava/lang/String;Z)V
+}
+
+public final class com/chucker/featureflag/api/store/PersistentFeatureFlagStore : com/chucker/featureflag/api/store/FeatureFlagStore {
+	public fun <init> (Landroid/content/Context;)V
+	public fun get (Ljava/lang/String;)Z
+	public fun getAll ()Ljava/util/List;
+	public fun set (Ljava/lang/String;Z)V
+}
+
