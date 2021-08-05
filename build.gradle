@@ -23,7 +23,6 @@ buildscript {
 
         // Debug and quality control
         binaryCompatibilityValidator = '0.6.0'
-        detektVersion = '1.17.1'
         dokkaVersion = '1.5.0'
         ktLintGradleVersion = '10.0.0'
         leakcanaryVersion = '2.7'
@@ -51,8 +50,6 @@ buildscript {
         classpath "de.mannodermaus.gradle.plugins:android-junit5:$junitGradlePluignVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokkaVersion"
-        classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$detektVersion"
-        classpath "org.jlleitschuh.gradle:ktlint-gradle:$ktLintGradleVersion"
         classpath "org.jetbrains.kotlinx:binary-compatibility-validator:$binaryCompatibilityValidator"
         classpath "com.squareup.wire:wire-gradle-plugin:$wireVersion"
         classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:$nexusStagingPlugin"
