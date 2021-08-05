@@ -1,10 +1,10 @@
 name: Pre Merge Checks
-on: 
+on:
   push:
     branches:
       - develop
   pull_request:
-    branches: 
+    branches:
       - '*'
   workflow_dispatch:
     branches:
@@ -12,37 +12,37 @@ on:
 
 jobs:
   test:
-    runs-on: [ubuntu-latest]
+    runs-on: [ ubuntu-latest ]
 
     steps:
-    - name: Cancel Previous Runs
-      if: github.event_name == 'pull_request'
-      uses: styfle/cancel-workflow-action@0.9.0
-      with:
-        access_token: ${{ github.token }}
+      - name: Cancel Previous Runs
+        if: github.event_name == 'pull_request'
+        uses: styfle/cancel-workflow-action@0.9.0
+        with:
+          access_token: ${{ github.token }}
 
-    - name: Checkout Repo
-      uses: actions/checkout@v2
+      - name: Checkout Repo
+        uses: actions/checkout@v2
 
-    - name: Cache Gradle Folders
-      uses: actions/cache@v2
-      with:
-        path: |
-          ~/.gradle/caches/
-          ~/.gradle/wrapper/
-        key: cache-gradle-${{ matrix.kotlin-version }}-${{ hashFiles('build.gradle') }}
-        restore-keys: |
-          cache-gradle-${{ matrix.version }}-
-          cache-gradle-
+      - name: Cache Gradle Folders
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches/
+            ~/.gradle/wrapper/
+          key: cache-gradle-${{ matrix.kotlin-version }}-${{ hashFiles('build.gradle') }}
+          restore-keys: |
+            cache-gradle-${{ matrix.version }}-
+            cache-gradle-
 
-    - name: Run all the tests
-      run: ./gradlew test
+      - name: Run all the tests
+        run: ./gradlew test
 
-    - name: Stop Gradle
-      run: ./gradlew --stop
+      - name: Stop Gradle
+        run: ./gradlew --stop
 
   lint:
-    runs-on: [ubuntu-latest]
+    runs-on: [ ubuntu-latest ]
 
     steps:
       - name: Checkout Repo
@@ -63,30 +63,8 @@ jobs:
       - name: Stop Gradle
         run: ./gradlew --stop
 
-  ktlint:
-    runs-on: [ubuntu-latest]
-
-    steps:
-    - name: Checkout Repo
-      uses: actions/checkout@v2
-
-    - name: Cache Gradle Folders
-      uses: actions/cache@v2
-      with:
-        path: |
-          ~/.gradle/caches/
-          ~/.gradle/wrapper/
-        key: cache-gradle-${{ hashFiles('build.gradle') }}
-        restore-keys: cache-gradle-
- 
-    - name: Run ktlint
-      run: ./gradlew ktlintCheck
-
-    - name: Stop Gradle
-      run: ./gradlew --stop
-
   api-check:
-    runs-on: [ubuntu-latest]
+    runs-on: [ ubuntu-latest ]
 
     steps:
       - name: Checkout Repo
