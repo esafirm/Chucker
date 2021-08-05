@@ -41,28 +41,6 @@ jobs:
     - name: Stop Gradle
       run: ./gradlew --stop
 
-  detekt:
-    runs-on: [ubuntu-latest]
-
-    steps:
-    - name: Checkout Repo
-      uses: actions/checkout@v2
-
-    - name: Cache Gradle Folders
-      uses: actions/cache@v2
-      with:
-        path: |
-          ~/.gradle/caches/
-          ~/.gradle/wrapper/
-        key: cache-gradle-${{ hashFiles('build.gradle') }}
-        restore-keys: cache-gradle-
-
-    - name: Run detekt
-      run: ./gradlew detekt
-
-    - name: Stop Gradle
-      run: ./gradlew --stop
-
   lint:
     runs-on: [ubuntu-latest]
 
@@ -128,34 +106,3 @@ jobs:
 
       - name: Stop Gradle
         run: ./gradlew --stop
-
-  publish-artifact:
-    runs-on: [ubuntu-latest]
-
-    steps:
-    - name: Checkout Repo
-      uses: actions/checkout@v2
-
-    - name: Cache Gradle Folders
-      uses: actions/cache@v2
-      with:
-        path: |
-          ~/.gradle/caches/
-          ~/.gradle/wrapper/
-        key: cache-gradle-${{ hashFiles('build.gradle') }}
-        restore-keys: cache-gradle-
-          
-    - name: Publish to Maven Local
-      run: ./gradlew publishToMavenLocal
-      env:
-        ORG_GRADLE_PROJECT_SIGNING_KEY: ${{ secrets.ORG_GRADLE_PROJECT_SIGNING_KEY }}
-        ORG_GRADLE_PROJECT_SIGNING_PWD: ${{ secrets.ORG_GRADLE_PROJECT_SIGNING_PWD }}
-
-    - name: Upload Build Artifacts
-      uses: actions/upload-artifact@v2
-      with:
-        name: 'chucker-local-artifacts'
-        path: '~/.m2/repository/'
-
-    - name: Stop Gradle
-      run: ./gradlew --stop
