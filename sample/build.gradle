@@ -66,9 +66,8 @@ android {
 
 dependencies {
     debugImplementation project(':library')
+    debugImplementation project(':library-feature-flag')
     releaseImplementation project(':library-no-op')
-
-    implementation project(':library-feature-flag')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 
@@ -82,5 +81,3 @@ dependencies {
 
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakcanaryVersion"
 }
-
-apply from: rootProject.file('gradle/kotlin-static-analysis.gradle')
