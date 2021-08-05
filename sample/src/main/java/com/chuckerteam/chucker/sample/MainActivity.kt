@@ -4,8 +4,13 @@ import android.os.Bundle
 import android.os.StrictMode
 import android.text.method.LinkMovementMethod
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.chucker.featureflag.api.FeatureFlagModule
+import com.chucker.featureflag.api.store.ObservedFeatureFlagStore
+import com.chucker.featureflag.api.store.PersistentFeatureFlagStore
 import com.chuckerteam.chucker.api.Chucker
+import com.chuckerteam.chucker.api.extramodule.ExtraModuleRegistry
 import com.chuckerteam.chucker.sample.databinding.ActivityMainSampleBinding
 
 private val interceptorTypeSelector = InterceptorTypeSelector()
@@ -27,6 +32,27 @@ class MainActivity : AppCompatActivity() {
 
         mainBinding = ActivityMainSampleBinding.inflate(layoutInflater)
 
+        ExtraModuleRegistry.addExtraModule(
+            FeatureFlagModule(
+                passedStore = ObservedFeatureFlagStore(
+                    PersistentFeatureFlagStore(applicationContext)
+                ) { featureName, isEnabled ->
+                    SampleFeatureFlag.valueOf(featureName).isEnabled = isEnabled
+                },
+                initialFlags = { store ->
+                    SampleFeatureFlag.values().forEach {
+                        store.set(it.name, false)
+                    }
+                },
+                onLoad = { store ->
+                    store.getAll()
+                        .forEach {
+                            SampleFeatureFlag.valueOf(it.first).isEnabled = it.second
+                        }
+                }
+            )
+        )
+
         with(mainBinding) {
             setContentView(root)
             doHttp.setOnClickListener {
@@ -37,6 +63,13 @@ class MainActivity : AppCompatActivity() {
 
             launchChuckerDirectly.visibility = if (Chucker.isOp) View.VISIBLE else View.GONE
             launchChuckerDirectly.setOnClickListener { launchChuckerDirectly() }
+
+            showAllFlags?.setOnClickListener {
+                val text = SampleFeatureFlag.values().joinToString(separator = "\n") {
+                    "${it.name} : ${it.isEnabled}"
+                }
+                Toast.makeText(applicationContext, text, Toast.LENGTH_SHORT).show()
+            }
 
             interceptorTypeLabel.movementMethod = LinkMovementMethod.getInstance()
             useApplicationInterceptor.setOnCheckedChangeListener { _, isChecked ->

@@ -8,4 +8,5 @@
 
     <string name="intro_title">Welcome to Chucker Sample App</string>
     <string name="intro_body">You can use this sample app to do some HTTP networking and to see how Chucker can help you inspect your networking calls.</string>
+    <string name="show_all_flags">Show All Flags</string>
 </resources>

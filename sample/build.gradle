@@ -68,6 +68,8 @@ dependencies {
     debugImplementation project(':library')
     releaseImplementation project(':library-no-op')
 
+    implementation project(':library-feature-flag')
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 
     implementation "com.google.android.material:material:$materialComponentsVersion"
