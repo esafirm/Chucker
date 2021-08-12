@@ -54,13 +54,13 @@ public final class com/chuckerteam/chucker/api/RetentionManager$Period : java/la
 	public static fun values ()[Lcom/chuckerteam/chucker/api/RetentionManager$Period;
 }
 
-public abstract interface class com/chuckerteam/chucker/api/extramodule/ExtraModule {
+public abstract interface class com/chuckerteam/chucker/api/extramodule/ChuckerExtraModule {
 	public abstract fun getModuleName ()Ljava/lang/String;
 	public abstract fun onNavigateToModule (Landroid/content/Context;)V
 }
 
-public final class com/chuckerteam/chucker/api/extramodule/ExtraModuleRegistry {
-	public static final field INSTANCE Lcom/chuckerteam/chucker/api/extramodule/ExtraModuleRegistry;
-	public final fun addExtraModule (Lcom/chuckerteam/chucker/api/extramodule/ExtraModule;)V
+public final class com/chuckerteam/chucker/api/extramodule/ChuckerExtraModuleRegistry {
+	public static final field INSTANCE Lcom/chuckerteam/chucker/api/extramodule/ChuckerExtraModuleRegistry;
+	public final fun addExtraModule (Lcom/chuckerteam/chucker/api/extramodule/ChuckerExtraModule;)V
 }
 
