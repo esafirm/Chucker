@@ -84,3 +84,25 @@ jobs:
 
       - name: Stop Gradle
         run: ./gradlew --stop
+
+  build:
+    runs-on: [ ubuntu-latest ]
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Cache Gradle Folders
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches/
+            ~/.gradle/wrapper/
+          key: cache-gradle-${{ hashFiles('build.gradle') }}
+          restore-keys: cache-gradle-
+
+      - name: Build
+        run: ./gradlew build
+
+      - name: Stop Gradle
+        run: ./gradlew --stop
