@@ -67,6 +67,7 @@ android {
 dependencies {
     debugImplementation project(':library')
     debugImplementation project(':library-feature-flag')
+    debugImplementation project(':library-extra-activity-info')
     releaseImplementation project(':library-no-op')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"

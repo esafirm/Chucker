@@ -1,5 +1,6 @@
 package com.chuckerteam.chucker.api
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ShortcutInfo
@@ -11,6 +12,7 @@ import androidx.core.content.getSystemService
 import com.chuckerteam.chucker.R
 import com.chuckerteam.chucker.internal.support.Logger
 import com.chuckerteam.chucker.internal.support.NotificationHelper
+import com.chuckerteam.chucker.internal.ui.BaseChuckerActivity
 import com.chuckerteam.chucker.internal.ui.MainActivity
 
 /**
@@ -73,6 +75,10 @@ public object Chucker {
     @JvmStatic
     public fun dismissNotifications(context: Context) {
         NotificationHelper(context).dismissNotifications()
+    }
+
+    public fun isChuckerActivity(activity: Activity): Boolean {
+        return activity is BaseChuckerActivity
     }
 
     internal var logger: Logger = object : Logger {
