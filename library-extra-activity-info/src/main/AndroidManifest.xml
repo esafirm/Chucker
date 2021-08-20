@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.chuckerteam.chucker">
+
+    <application>
+        <activity
+            android:name="com.chucker.activity.internal.ActivityInfoActivity"
+            android:launchMode="singleTask"
+            android:taskAffinity="com.chuckerteam.chucker.task"
+            android:theme="@style/Chucker.Theme" />
+    </application>
+</manifest>

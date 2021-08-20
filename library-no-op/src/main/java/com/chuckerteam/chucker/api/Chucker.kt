@@ -1,5 +1,6 @@
 package com.chuckerteam.chucker.api
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 
@@ -19,4 +20,6 @@ public object Chucker {
     public fun dismissNotifications(context: Context) {
         // Empty method for the library-no-op artifact
     }
+
+    public fun isChuckerActivity(activity: Activity): Boolean = false
 }
