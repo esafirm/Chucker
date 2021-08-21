@@ -52,13 +52,13 @@ internal class ActivityTrackerCallback(
             activity is AppCompatActivity -> {
                 activity.supportFragmentManager.fragments.map {
                     val visibility = it.isVisible.asString()
-                    "${it.simpleName()} ($visibility) [${it.tag}]"
+                    "${it.simpleName()} $visibility [${it.tag}]"
                 }
             }
             Build.VERSION.SDK_INT >= 26 -> {
                 activity.fragmentManager.fragments.map {
                     val visibility = it.isVisible.asString()
-                    "${it.simpleName()} ($visibility) [${it.tag}]"
+                    "${it.simpleName()} $visibility [${it.tag}]"
                 }
             }
             else -> emptyList()
@@ -73,6 +73,7 @@ internal class ActivityTrackerCallback(
         return ActivityInfo(
                 simpleName = activity.getActivitySimpleName(),
                 packageName = activity.packageName,
+                callingActivity = activity.callingActivity?.className ?: "",
                 fragments = fragments,
                 otherInfo = otherInfo
         )

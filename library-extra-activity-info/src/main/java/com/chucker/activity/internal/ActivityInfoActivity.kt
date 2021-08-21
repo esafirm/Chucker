@@ -30,10 +30,15 @@ internal class ActivityInfoActivity : AppCompatActivity() {
                 ?: error("Activity info is not available")
 
         val fragments = info.fragments.joinToString("\n")
+                .ifBlank { "No Fragments in this Activity" }
 
         binding.container.run {
             addView(createInfoView("Name", "${info.packageName}.${info.simpleName}"))
             addView(createInfoView("Fragments", fragments))
+
+            if (info.callingActivity.isNotBlank()) {
+                addView(createInfoView("Caller Activity", info.callingActivity))
+            }
 
             info.otherInfo.forEach {
                 addView(createInfoView(it.key, it.value))

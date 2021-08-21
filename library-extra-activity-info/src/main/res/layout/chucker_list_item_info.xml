@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -9,13 +10,15 @@
         android:id="@+id/txt_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/Chucker.TextAppearance.Label" />
+        android:textAppearance="@style/Chucker.TextAppearance.Title"
+        tools:text="Testing" />
 
     <TextView
         android:id="@+id/txt_value"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/chucker_doub_grid"
-        android:textAppearance="@style/Chucker.TextAppearance.Value" />
+        android:layout_marginTop="@dimen/chucker_base_grid"
+        android:textAppearance="@style/Chucker.TextAppearance.Value"
+        tools:text="Testing" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
