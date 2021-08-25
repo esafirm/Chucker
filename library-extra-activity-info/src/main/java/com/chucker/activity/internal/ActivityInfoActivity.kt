@@ -5,8 +5,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.chuckerteam.chucker.databinding.ChuckerActivityInfoBinding
-import com.chuckerteam.chucker.databinding.ChuckerListItemInfoBinding
+import com.chucker.activity.databinding.ChuckerActivityInfoBinding
+import com.chucker.activity.databinding.ChuckerListItemInfoBinding
 
 internal class ActivityInfoActivity : AppCompatActivity() {
 

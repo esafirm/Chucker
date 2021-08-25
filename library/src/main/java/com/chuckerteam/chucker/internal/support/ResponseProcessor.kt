@@ -44,6 +44,7 @@ internal class ResponseProcessor(
             }
 
             responseContentType = response.contentType
+            isFromCache = response.cacheControl.maxAgeSeconds > 0 && response.cacheResponse != null
 
             tookMs = (response.receivedResponseAtMillis - response.sentRequestAtMillis)
         }
