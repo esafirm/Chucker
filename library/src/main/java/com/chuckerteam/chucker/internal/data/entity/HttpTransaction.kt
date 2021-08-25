@@ -50,7 +50,8 @@ internal class HttpTransaction(
     @ColumnInfo(name = "responseHeaders") var responseHeaders: String?,
     @ColumnInfo(name = "responseBody") var responseBody: String?,
     @ColumnInfo(name = "isResponseBodyEncoded") var isResponseBodyEncoded: Boolean = false,
-    @ColumnInfo(name = "responseImageData") var responseImageData: ByteArray?
+    @ColumnInfo(name = "responseImageData") var responseImageData: ByteArray?,
+    @ColumnInfo(name = "isFromCache") var isFromCache: Boolean = false
 ) {
 
     @Ignore

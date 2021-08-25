@@ -27,6 +27,15 @@
         tools:text="200"
         tools:ignore="RtlSymmetry" />
 
+    <ImageView
+        android:id="@+id/indicator_cache"
+        android:src="@drawable/chucker_ic_cache"
+        android:visibility="invisible"
+        tools:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@id/code"
+        android:layout_width="@dimen/chucker_doub_grid"
+        android:layout_height="@dimen/chucker_doub_grid"/>
+
     <TextView
         android:id="@+id/path"
         android:layout_width="0dp"
