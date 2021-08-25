@@ -64,7 +64,8 @@ apiValidation {
     ignoredProjects += ["sample"]
     ignoredPackages += [
             "com.chuckerteam.chucker.internal",
-            "com.chuckerteam.chucker.databinding"
+            "com.chuckerteam.chucker.databinding",
+            "com.chucker.activity.databinding"
     ]
 }
 

@@ -131,6 +131,7 @@ internal class HttpTransactionTupleTest {
         responseCode,
         requestPayloadSize,
         responsePayloadSize,
-        error
+        error,
+        false
     )
 }
