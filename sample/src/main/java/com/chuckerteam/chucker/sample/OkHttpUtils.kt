@@ -4,12 +4,10 @@ import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.chuckerteam.chucker.api.RetentionManager
-import okhttp3.Call
-import okhttp3.Callback
-import okhttp3.OkHttpClient
-import okhttp3.Response
+import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import okio.IOException
+import java.io.File
 
 const val SEGMENT_SIZE = 8_192L
 
@@ -32,7 +30,13 @@ fun createOkHttpClient(
         .addBodyDecoder(PokemonProtoBodyDecoder())
         .build()
 
+    val cache = Cache(
+        File(context.cacheDir, "chucker_cache"),
+        50L * 1024L * 1024L // 50 MiB
+    )
+
     return OkHttpClient.Builder()
+        .cache(cache)
         // Add a ChuckerInterceptor instance to your OkHttp client as an application or a network interceptor.
         // Learn more about interceptor types here – https://square.github.io/okhttp/interceptors.
         // "activeForType" is needed only in this sample to control it from the UI.

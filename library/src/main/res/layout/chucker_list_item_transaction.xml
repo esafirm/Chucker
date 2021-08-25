@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:focusable="true"
     android:background="?android:attr/selectableItemBackground"
+    android:focusable="true"
     android:padding="@dimen/chucker_base_grid">
 
     <androidx.constraintlayout.widget.Guideline
@@ -24,17 +24,20 @@
         android:textAppearance="@style/Chucker.TextAppearance.ListItem"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="200"
-        tools:ignore="RtlSymmetry" />
+        tools:ignore="RtlSymmetry"
+        tools:text="200" />
 
     <ImageView
         android:id="@+id/indicator_cache"
+        android:layout_width="@dimen/chucker_doub_grid"
+        android:layout_height="@dimen/chucker_doub_grid"
         android:src="@drawable/chucker_ic_cache"
         android:visibility="invisible"
-        tools:visibility="visible"
+        android:layout_margin="@dimen/chucker_half_grid"
+        app:layout_constraintLeft_toLeftOf="@id/code"
         app:layout_constraintTop_toBottomOf="@id/code"
-        android:layout_width="@dimen/chucker_doub_grid"
-        android:layout_height="@dimen/chucker_doub_grid"/>
+        tools:visibility="visible"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/path"
@@ -67,9 +70,9 @@
         android:layout_width="@dimen/chucker_doub_grid"
         android:layout_height="@dimen/chucker_doub_grid"
         android:contentDescription="@string/chucker_ssl"
+        app:layout_constraintBottom_toBottomOf="@id/host"
         app:layout_constraintStart_toStartOf="@+id/path"
         app:layout_constraintTop_toTopOf="@+id/host"
-        app:layout_constraintBottom_toBottomOf="@id/host"
         tools:src="@drawable/chucker_ic_https" />
 
     <TextView

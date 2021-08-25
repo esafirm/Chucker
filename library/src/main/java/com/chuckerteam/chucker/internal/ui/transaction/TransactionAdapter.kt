@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.ColorStateList
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
@@ -62,6 +63,7 @@ internal class TransactionAdapter internal constructor(
                 timeStart.text = DateFormat.getTimeInstance().format(transaction.requestDate)
 
                 setProtocolImage(if (transaction.isSsl) ProtocolResources.Https() else ProtocolResources.Http())
+                setCacheIndicator(transaction)
 
                 if (transaction.status === HttpTransaction.Status.Complete) {
                     code.text = transaction.responseCode.toString()
@@ -86,6 +88,15 @@ internal class TransactionAdapter internal constructor(
                 itemBinding.ssl,
                 ColorStateList.valueOf(ContextCompat.getColor(itemView.context, resources.color))
             )
+        }
+
+        private fun setCacheIndicator(transaction: HttpTransactionTuple) {
+            val isFromCache = transaction.isFromCache == true
+            if (isFromCache) {
+                itemBinding.indicatorCache.visibility = View.VISIBLE
+            } else {
+                itemBinding.indicatorCache.visibility = View.INVISIBLE
+            }
         }
 
         private fun setStatusColor(transaction: HttpTransactionTuple) {
