@@ -1,1 +1,14 @@
-include ':sample', ':library', ':library-no-op', ':library-feature-flag'
+def includeModules(modules) {
+    modules.forEach {
+        include it
+    }
+}
+
+includeModules([
+        ':sample',
+        ':library',
+        ':library-no-op',
+        ':library-feature-flag',
+        ':library-extra-activity-info',
+        ':library-extra-activity-info-noop'
+])

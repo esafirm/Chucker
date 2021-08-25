@@ -1,0 +1,12 @@
+public final class com/chucker/activity/api/ActivityInfoModule : com/chuckerteam/chucker/api/extramodule/ChuckerExtraModule {
+	public fun <init> (Landroid/app/Application;Z)V
+	public synthetic fun <init> (Landroid/app/Application;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun getModuleName ()Ljava/lang/String;
+	public fun onNavigateToModule (Landroid/content/Context;)V
+}
+
+public abstract interface class com/chucker/activity/api/ActivityInfoProvider {
+	public abstract fun getActivityName ()Ljava/lang/String;
+	public abstract fun getOtherInfo ()Ljava/util/Map;
+}
+

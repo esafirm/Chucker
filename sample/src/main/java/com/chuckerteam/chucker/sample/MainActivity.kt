@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.chuckerteam.chucker.api.Chucker
 import com.chuckerteam.chucker.sample.databinding.ActivityMainSampleBinding
+import com.chuckerteam.chucker.sample.extras.SampleFragment
 
 private val interceptorTypeSelector = InterceptorTypeSelector()
 
@@ -39,11 +40,24 @@ class MainActivity : AppCompatActivity() {
             launchChuckerDirectly.visibility = if (Chucker.isOp) View.VISIBLE else View.GONE
             launchChuckerDirectly.setOnClickListener { launchChuckerDirectly() }
 
+            // Extra module FeatureFlag
             showAllFlags?.setOnClickListener {
                 val text = SampleFeatureFlag.values().joinToString(separator = "\n") {
                     "${it.name} : ${it.isEnabled}"
                 }
                 Toast.makeText(applicationContext, text, Toast.LENGTH_SHORT).show()
+            }
+
+            // Extra module ActivityInfo
+            addFragment?.setOnClickListener {
+                supportFragmentManager.beginTransaction()
+                        .add(SampleFragment(), SampleFragment::class.java.simpleName)
+                        .commit()
+                Toast.makeText(
+                        application,
+                        "Fragment added, please trigger onResume() to see effect",
+                        Toast.LENGTH_SHORT
+                ).show()
             }
 
             interceptorTypeLabel.movementMethod = LinkMovementMethod.getInstance()
@@ -60,11 +74,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         StrictMode.setVmPolicy(
-            StrictMode.VmPolicy.Builder()
-                .detectLeakedClosableObjects()
-                .penaltyLog()
-                .penaltyDeath()
-                .build()
+                StrictMode.VmPolicy.Builder()
+                        .detectLeakedClosableObjects()
+                        .penaltyLog()
+                        .penaltyDeath()
+                        .build()
         )
     }
 
