@@ -99,7 +99,7 @@ task installGitHook(type: Copy) {
 }
 
 task clean(type: Delete) {
-    dependsOn(installGitHook)
+//    dependsOn(installGitHook)
     delete rootProject.buildDir
 }
 
