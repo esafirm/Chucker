@@ -32,18 +32,4 @@ android {
 
 dependencies {
     implementation project(':library-no-op')
-
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
-
-    implementation "com.google.android.material:material:$materialComponentsVersion"
-    implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
-    implementation "androidx.palette:palette-ktx:$paletteKtxVersion"
-
-    implementation "androidx.activity:activity-ktx:$activityVersion"
-    implementation "androidx.fragment:fragment-ktx:$fragmentVersion"
-
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
-
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion"
 }
