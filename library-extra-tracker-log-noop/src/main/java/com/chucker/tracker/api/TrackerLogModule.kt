@@ -6,7 +6,6 @@ import com.chuckerteam.chucker.api.extramodule.ChuckerExtraModule
 
 class TrackerLogModule(
     app: Application,
-    enableNotification: Boolean = true
 ) : ChuckerExtraModule {
 
     override val moduleName: String = "Tracker Log"

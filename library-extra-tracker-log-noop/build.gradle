@@ -1,1 +1,49 @@
-apply from: "${templateDir}/extramodule.gradle"
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion rootProject.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.minSdkVersion
+        consumerProguardFiles 'proguard-rules.pro'
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    buildFeatures {
+        viewBinding true
+        buildConfig false
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+            all {
+                useJUnitPlatform()
+            }
+        }
+    }
+
+    resourcePrefix 'chucker_'
+}
+
+dependencies {
+    implementation project(':library-no-op')
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+
+    implementation "com.google.android.material:material:$materialComponentsVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+    implementation "androidx.palette:palette-ktx:$paletteKtxVersion"
+
+    implementation "androidx.activity:activity-ktx:$activityVersion"
+    implementation "androidx.fragment:fragment-ktx:$fragmentVersion"
+
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
+
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion"
+}
