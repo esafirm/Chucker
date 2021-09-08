@@ -2,7 +2,6 @@ package com.chucker.tracker.internal.data.repository
 
 import android.content.Context
 import com.chucker.tracker.internal.data.room.TrackerLogDatabase
-import com.chucker.tracker.internal.support.NotificationHelper
 
 internal object TrackerLogRepositoryProvider {
 
@@ -18,10 +17,10 @@ internal object TrackerLogRepositoryProvider {
         }
     }
 
-    fun initialize(context: Context, notificationHelper: NotificationHelper? = null) {
+    fun initialize(context: Context) {
         if (trackerLogRepositoryBuilder == null) {
             trackerLogRepositoryBuilder = {
-                TrackerLogRepositoryImpl(TrackerLogDatabase.create(context), notificationHelper)
+                TrackerLogRepositoryImpl(TrackerLogDatabase.create(context))
             }
         }
     }

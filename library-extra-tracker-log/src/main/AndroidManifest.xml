@@ -8,15 +8,6 @@
             android:launchMode="singleTask"
             android:taskAffinity="com.chuckerteam.chucker.task"
             android:theme="@style/Chucker.Theme" />
-
-        <service
-            android:name=".internal.service.ClearTrackerLogDatabaseService"
-            android:exported="false"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
-
-        <receiver
-            android:name=".internal.service.ClearTrackerLogJobIntentServiceReceiver"
-            android:exported="false" />
     </application>
 
 </manifest>

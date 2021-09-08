@@ -4,7 +4,6 @@ import android.app.Application
 import android.content.Context
 import com.chucker.tracker.internal.ui.TrackerLogActivity
 import com.chucker.tracker.internal.data.repository.TrackerLogRepositoryProvider
-import com.chucker.tracker.internal.support.NotificationHelper
 import com.chuckerteam.chucker.api.extramodule.ChuckerExtraModule
 
 class TrackerLogModule(
@@ -15,7 +14,7 @@ class TrackerLogModule(
     override val moduleName: String = "Tracker Log"
 
     init {
-        TrackerLogRepositoryProvider.initialize(app, if (enableNotification) NotificationHelper(app) else null)
+        TrackerLogRepositoryProvider.initialize(app)
     }
 
     override fun onNavigateToModule(context: Context) {

@@ -4,15 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
 import com.chucker.tracker.internal.data.entity.TrackerLog
 import com.chucker.tracker.internal.data.room.TrackerLogDatabase
-import com.chucker.tracker.internal.support.NotificationHelper
 
 internal class TrackerLogRepositoryImpl(
-    private val database: TrackerLogDatabase,
-    private val notificationHelper: NotificationHelper?
+    private val database: TrackerLogDatabase
 ) : TrackerLogRepository {
     override suspend fun insertLog(log: TrackerLog) {
         database.trackerLogDao().insert(log)
-        notificationHelper?.show(database.trackerLogDao().getAll().size)
     }
 
     override suspend fun deleteAllTransactions() {
