@@ -1,0 +1,16 @@
+public abstract interface class com/chucker/tracker/api/TrackerLogCollector {
+	public abstract fun sendLog (Ljava/util/Map;)V
+}
+
+public final class com/chucker/tracker/api/TrackerLogCollectorImpl : com/chucker/tracker/api/TrackerLogCollector {
+	public fun <init> ()V
+	public fun sendLog (Ljava/util/Map;)V
+}
+
+public final class com/chucker/tracker/api/TrackerLogModule : com/chuckerteam/chucker/api/extramodule/ChuckerExtraModule {
+	public fun <init> (Landroid/app/Application;Z)V
+	public synthetic fun <init> (Landroid/app/Application;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun getModuleName ()Ljava/lang/String;
+	public fun onNavigateToModule (Landroid/content/Context;)V
+}
+
