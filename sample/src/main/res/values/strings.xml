@@ -10,4 +10,5 @@
     <string name="intro_body">You can use this sample app to do some HTTP networking and to see how Chucker can help you inspect your networking calls.</string>
     <string name="show_all_flags">Show All Flags</string>
     <string name="add_fragment">Add Fragment</string>
+    <string name="add_tracker_log">Add Tracker Log</string>
 </resources>

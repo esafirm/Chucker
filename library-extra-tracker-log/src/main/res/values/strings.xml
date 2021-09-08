@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="chucker_share_all_tracker_log_title">Share tracker logs</string>
+    <string name="chucker_share_all_tracker_log_subject">All tracker logs</string>
+    <string name="chucker_clear_tracker_log">Do you want to clear complete tracker logs history?</string>
+</resources>
