@@ -10,5 +10,7 @@ includeModules([
         ':library-no-op',
         ':library-feature-flag',
         ':library-extra-activity-info',
-        ':library-extra-activity-info-noop'
+        ':library-extra-activity-info-noop',
+        ':library-extra-tracker-log',
+        ':library-extra-tracker-log-noop'
 ])

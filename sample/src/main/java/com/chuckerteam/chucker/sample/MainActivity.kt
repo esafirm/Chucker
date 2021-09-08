@@ -6,6 +6,7 @@ import android.text.method.LinkMovementMethod
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.chucker.tracker.api.TrackerLogCollectorImpl
 import com.chuckerteam.chucker.api.Chucker
 import com.chuckerteam.chucker.sample.databinding.ActivityMainSampleBinding
 import com.chuckerteam.chucker.sample.extras.SampleFragment
@@ -51,12 +52,12 @@ class MainActivity : AppCompatActivity() {
             // Extra module ActivityInfo
             addFragment?.setOnClickListener {
                 supportFragmentManager.beginTransaction()
-                        .add(SampleFragment(), SampleFragment::class.java.simpleName)
-                        .commit()
+                    .add(SampleFragment(), SampleFragment::class.java.simpleName)
+                    .commit()
                 Toast.makeText(
-                        application,
-                        "Fragment added, please trigger onResume() to see effect",
-                        Toast.LENGTH_SHORT
+                    application,
+                    "Fragment added, please trigger onResume() to see effect",
+                    Toast.LENGTH_SHORT
                 ).show()
             }
 
@@ -71,14 +72,23 @@ class MainActivity : AppCompatActivity() {
                     interceptorTypeSelector.value = InterceptorType.NETWORK
                 }
             }
+
+            addTrackerLog?.setOnClickListener {
+                val map = mapOf(
+                    "event" to "click",
+                    "product" to "my product"
+                )
+                TrackerLogCollectorImpl().sendLog(map)
+                Toast.makeText(applicationContext, map.toString(), Toast.LENGTH_SHORT).show()
+            }
         }
 
         StrictMode.setVmPolicy(
-                StrictMode.VmPolicy.Builder()
-                        .detectLeakedClosableObjects()
-                        .penaltyLog()
-                        .penaltyDeath()
-                        .build()
+            StrictMode.VmPolicy.Builder()
+                .detectLeakedClosableObjects()
+                .penaltyLog()
+                .penaltyDeath()
+                .build()
         )
     }
 
