@@ -1,1 +1,2 @@
 apply from: "${templateDir}/extramodule.gradle"
+apply from: rootProject.file('gradle/gradle-mvn-push.gradle')

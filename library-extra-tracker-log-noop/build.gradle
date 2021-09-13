@@ -33,3 +33,5 @@ android {
 dependencies {
     implementation project(':library-no-op')
 }
+
+apply from: rootProject.file('gradle/gradle-mvn-push.gradle')

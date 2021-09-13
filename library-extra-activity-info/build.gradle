@@ -46,3 +46,5 @@ dependencies {
 
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion"
 }
+
+apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
