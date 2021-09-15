@@ -1,0 +1,70 @@
+public abstract interface class com/chucker/logging/api/LoggingCollector {
+	public abstract fun sendLog (Ljava/lang/String;Ljava/lang/Object;)V
+	public abstract fun sendLog (Ljava/lang/String;Ljava/lang/String;)V
+}
+
+public final class com/chucker/logging/api/LoggingCollectorImpl : com/chucker/logging/api/LoggingCollector {
+	public fun <init> ()V
+	public fun <init> (Lkotlinx/coroutines/CoroutineScope;Lcom/google/gson/Gson;)V
+	public synthetic fun <init> (Lkotlinx/coroutines/CoroutineScope;Lcom/google/gson/Gson;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun sendLog (Ljava/lang/String;Ljava/lang/Object;)V
+	public fun sendLog (Ljava/lang/String;Ljava/lang/String;)V
+}
+
+public final class com/chucker/logging/api/LoggingModule : com/chuckerteam/chucker/api/extramodule/ChuckerExtraModule {
+	public fun <init> (Landroid/app/Application;)V
+	public fun getModuleName ()Ljava/lang/String;
+	public fun onNavigateToModule (Landroid/content/Context;)V
+}
+
+public final class com/chucker/logging/databinding/ChuckerActivityLoggingBinding : androidx/viewbinding/ViewBinding {
+	public final field appBarLayout Lcom/google/android/material/appbar/AppBarLayout;
+	public final field editText Landroid/widget/AutoCompleteTextView;
+	public final field recyclerView Landroidx/recyclerview/widget/RecyclerView;
+	public final field tagSpinner Lcom/google/android/material/textfield/TextInputLayout;
+	public final field toolbar Lcom/google/android/material/appbar/MaterialToolbar;
+	public static fun bind (Landroid/view/View;)Lcom/chucker/logging/databinding/ChuckerActivityLoggingBinding;
+	public synthetic fun getRoot ()Landroid/view/View;
+	public fun getRoot ()Landroidx/constraintlayout/widget/ConstraintLayout;
+	public static fun inflate (Landroid/view/LayoutInflater;)Lcom/chucker/logging/databinding/ChuckerActivityLoggingBinding;
+	public static fun inflate (Landroid/view/LayoutInflater;Landroid/view/ViewGroup;Z)Lcom/chucker/logging/databinding/ChuckerActivityLoggingBinding;
+}
+
+public final class com/chucker/logging/databinding/ChuckerItemLogBinding : androidx/viewbinding/ViewBinding {
+	public final field copyButton Landroidx/appcompat/widget/AppCompatImageView;
+	public final field message Landroid/widget/TextView;
+	public final field tag Landroid/widget/TextView;
+	public final field timeStamp Landroid/widget/TextView;
+	public static fun bind (Landroid/view/View;)Lcom/chucker/logging/databinding/ChuckerItemLogBinding;
+	public synthetic fun getRoot ()Landroid/view/View;
+	public fun getRoot ()Landroidx/constraintlayout/widget/ConstraintLayout;
+	public static fun inflate (Landroid/view/LayoutInflater;)Lcom/chucker/logging/databinding/ChuckerItemLogBinding;
+	public static fun inflate (Landroid/view/LayoutInflater;Landroid/view/ViewGroup;Z)Lcom/chucker/logging/databinding/ChuckerItemLogBinding;
+}
+
+public final class com/chucker/logging/databinding/ChuckerItemTagBinding : androidx/viewbinding/ViewBinding {
+	public static fun bind (Landroid/view/View;)Lcom/chucker/logging/databinding/ChuckerItemTagBinding;
+	public synthetic fun getRoot ()Landroid/view/View;
+	public fun getRoot ()Landroid/widget/TextView;
+	public static fun inflate (Landroid/view/LayoutInflater;)Lcom/chucker/logging/databinding/ChuckerItemTagBinding;
+	public static fun inflate (Landroid/view/LayoutInflater;Landroid/view/ViewGroup;Z)Lcom/chucker/logging/databinding/ChuckerItemTagBinding;
+}
+
+public final class com/chucker/logging/internal/data/room/LoggingDao_Impl : com/chucker/logging/internal/data/room/LoggingDao {
+	public fun <init> (Landroidx/room/RoomDatabase;)V
+	public fun deleteAll (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun getAllLiveData ()Ljava/util/List;
+	public fun getFiltered (Ljava/lang/String;)Ljava/util/List;
+	public fun getFilteredWithTag (Ljava/lang/String;Ljava/lang/String;)Ljava/util/List;
+	public static fun getRequiredConverters ()Ljava/util/List;
+	public fun getTags (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun insert (Lcom/chucker/logging/internal/data/entity/LogData;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class com/chucker/logging/internal/data/room/LoggingDatabase_Impl {
+	public static final field Companion Lcom/chucker/logging/internal/data/room/LoggingDatabase$Companion;
+	public fun <init> ()V
+	public fun clearAllTables ()V
+	public fun loggingDao ()Lcom/chucker/logging/internal/data/room/LoggingDao;
+}
+
