@@ -5,7 +5,7 @@ import com.chucker.activity.api.ActivityInfoModule
 import com.chucker.featureflag.api.FeatureFlagModule
 import com.chucker.featureflag.api.store.ObservedFeatureFlagStore
 import com.chucker.featureflag.api.store.PersistentFeatureFlagStore
-import com.chucker.tracker.api.TrackerLogModule
+import com.chucker.logging.api.LoggingModule
 import com.chuckerteam.chucker.api.extramodule.ChuckerExtraModuleRegistry
 
 class DebugSampleApp : Application() {
@@ -34,6 +34,6 @@ class DebugSampleApp : Application() {
         )
 
         ChuckerExtraModuleRegistry.addExtraModule(ActivityInfoModule(this))
-        ChuckerExtraModuleRegistry.addExtraModule(TrackerLogModule(this))
+        ChuckerExtraModuleRegistry.addExtraModule(LoggingModule(this))
     }
 }

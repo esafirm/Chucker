@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="chucker_share_all_logging_title">Share logs</string>
+    <string name="chucker_share_all_logging_subject">All logs</string>
+    <string name="chucker_clear_logging">Do you want to clear complete logs history?</string>
+    <string name="chucker_tag">Tag</string>
+</resources>
