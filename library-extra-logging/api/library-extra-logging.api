@@ -12,7 +12,7 @@ public final class com/chucker/logging/api/LoggingCollectorImpl : com/chucker/lo
 }
 
 public final class com/chucker/logging/api/LoggingModule : com/chuckerteam/chucker/api/extramodule/ChuckerExtraModule {
-	public fun <init> (Landroid/app/Application;)V
+	public fun <init> (Landroid/content/Context;)V
 	public fun getModuleName ()Ljava/lang/String;
 	public fun onNavigateToModule (Landroid/content/Context;)V
 }
