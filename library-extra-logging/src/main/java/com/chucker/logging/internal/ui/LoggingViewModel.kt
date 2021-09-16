@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.chucker.logging.internal.data.entity.LogData
 import com.chucker.logging.internal.data.repository.LoggingRepositoryProvider
+import com.chucker.logging.internal.support.formatDate
+import com.chucker.logging.internal.support.formatLog
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
@@ -16,7 +18,7 @@ internal class LoggingViewModel : ViewModel() {
     private var currentSelectedTag = ""
     val allTagLiveData = MutableLiveData(emptyList<String>())
 
-    val logDatas = MutableLiveData(emptyList<LogData>())
+    val logDatas = MutableLiveData(emptyList<LogViewParam>())
     private var jobSearch: Job? = null
 
     fun init() {
@@ -43,9 +45,9 @@ internal class LoggingViewModel : ViewModel() {
         doQuery()
     }
 
-    fun clearTransactions() {
+    fun clearLog() {
         viewModelScope.launch {
-            LoggingRepositoryProvider.get().deleteAllTransactions()
+            LoggingRepositoryProvider.get().deleteAllLog()
         }
     }
 
@@ -63,6 +65,10 @@ internal class LoggingViewModel : ViewModel() {
                         }
                     }
                 }
+            }.map {
+                LogViewParam(
+                    tag = it.tag, logText = it.logString.formatLog(), dateText = it.timeStamp.formatDate()
+                )
             }
 
             logDatas.value = result

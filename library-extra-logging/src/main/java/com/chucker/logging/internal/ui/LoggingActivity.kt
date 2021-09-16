@@ -17,12 +17,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.chucker.logging.R
 import com.chucker.logging.databinding.ChuckerActivityLoggingBinding
-import com.chucker.logging.internal.data.entity.LogData
 import com.chucker.logging.internal.support.shareAsFile
 import com.chucker.logging.internal.support.shareAsUtf8Text
 import com.chucker.logging.internal.support.showDialog
 import kotlinx.coroutines.launch
-import org.json.JSONObject
 
 internal class LoggingActivity : AppCompatActivity() {
 
@@ -107,7 +105,7 @@ internal class LoggingActivity : AppCompatActivity() {
                     positiveButtonText = getString(com.chuckerteam.chucker.R.string.chucker_clear),
                     negativeButtonText = getString(com.chuckerteam.chucker.R.string.chucker_cancel),
                     onPositiveClick = {
-                        viewModel.clearTransactions()
+                        viewModel.clearLog()
                     },
                     onNegativeClick = null
                 )
@@ -172,14 +170,9 @@ internal class LoggingActivity : AppCompatActivity() {
         }
     }
 
-    private fun copyLog(logData: LogData) = lifecycleScope.launch {
-        val message = try {
-            JSONObject(logData.logString).toString(2)
-        } catch (ignored: Exception) {
-            logData.logString
-        }
+    private fun copyLog(logData: LogViewParam) = lifecycleScope.launch {
         val clipboard: ClipboardManager = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
-        val clip = ClipData.newPlainText("Chucker Log", message)
+        val clip = ClipData.newPlainText("Chucker Log", logData.logText)
         clipboard.setPrimaryClip(clip)
 
         Toast.makeText(this@LoggingActivity, "Copied to clipboard", Toast.LENGTH_SHORT).show()

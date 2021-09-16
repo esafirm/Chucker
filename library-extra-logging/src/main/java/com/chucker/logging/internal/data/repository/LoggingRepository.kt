@@ -6,7 +6,7 @@ internal interface LoggingRepository {
 
     suspend fun insertLog(logData: LogData)
 
-    suspend fun deleteAllTransactions()
+    suspend fun deleteAllLog()
 
     suspend fun getFilteredLog(tag: String, query: String): List<LogData>
 

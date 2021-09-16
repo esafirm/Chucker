@@ -10,7 +10,7 @@ internal class LoggingRepositoryImpl(
         database.loggingDao().insert(logData)
     }
 
-    override suspend fun deleteAllTransactions() {
+    override suspend fun deleteAllLog() {
         database.loggingDao().deleteAll()
     }
 

@@ -10,7 +10,7 @@ import org.json.JSONObject
 import java.text.SimpleDateFormat
 
 internal class LogDataShareable(
-    private val logs: List<LogData>,
+    private val logs: List<LogViewParam>,
 ) : Sharable {
     override fun toSharableContent(context: Context): Source = Buffer().apply {
         writeUtf8(
@@ -19,13 +19,7 @@ internal class LogDataShareable(
                 prefix = "${context.getString(R.string.chucker_export_prefix)}\n",
                 postfix = "\n${context.getString(R.string.chucker_export_postfix)}\n"
             ) {
-                it.tag + "\n" + try {
-                    JSONObject(it.logString).toString(2)
-                } catch (ignored: Exception) {
-                    it.logString
-                } + "\n" + SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(
-                    it.timeStamp
-                )
+                it.tag + "\n" + it.logText + "\n" + it.dateText
             }
         )
     }
