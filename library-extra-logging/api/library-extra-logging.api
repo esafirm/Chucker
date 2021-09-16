@@ -68,3 +68,23 @@ public final class com/chucker/logging/internal/data/room/LoggingDatabase_Impl {
 	public fun loggingDao ()Lcom/chucker/logging/internal/data/room/LoggingDao;
 }
 
+public final class com/chucker/logging/internal/ui/LogViewParam {
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/chucker/logging/internal/ui/LogViewParam;
+	public static synthetic fun copy$default (Lcom/chucker/logging/internal/ui/LogViewParam;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/chucker/logging/internal/ui/LogViewParam;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDateText ()Ljava/lang/String;
+	public final fun getLogText ()Ljava/lang/String;
+	public final fun getTag ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun setDateText (Ljava/lang/String;)V
+	public final fun setLogText (Ljava/lang/String;)V
+	public final fun setTag (Ljava/lang/String;)V
+	public fun toString ()Ljava/lang/String;
+}
+
