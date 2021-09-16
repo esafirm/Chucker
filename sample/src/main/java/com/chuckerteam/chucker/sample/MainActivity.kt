@@ -6,7 +6,7 @@ import android.text.method.LinkMovementMethod
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.chucker.tracker.api.TrackerLogCollectorImpl
+import com.chucker.logging.api.LoggingCollectorImpl
 import com.chuckerteam.chucker.api.Chucker
 import com.chuckerteam.chucker.sample.databinding.ActivityMainSampleBinding
 import com.chuckerteam.chucker.sample.extras.SampleFragment
@@ -78,7 +78,7 @@ class MainActivity : AppCompatActivity() {
                     "event" to "click",
                     "product" to "my product"
                 )
-                TrackerLogCollectorImpl().sendLog(map)
+                LoggingCollectorImpl().sendLog("tag1", "test")
                 Toast.makeText(applicationContext, map.toString(), Toast.LENGTH_SHORT).show()
             }
         }

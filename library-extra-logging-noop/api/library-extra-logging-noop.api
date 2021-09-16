@@ -1,0 +1,17 @@
+public abstract interface class com/chucker/logging/api/LoggingCollector {
+	public abstract fun sendLog (Ljava/lang/String;Ljava/lang/Object;)V
+	public abstract fun sendLog (Ljava/lang/String;Ljava/lang/String;)V
+}
+
+public final class com/chucker/logging/api/LoggingCollectorImpl : com/chucker/logging/api/LoggingCollector {
+	public fun <init> ()V
+	public fun sendLog (Ljava/lang/String;Ljava/lang/Object;)V
+	public fun sendLog (Ljava/lang/String;Ljava/lang/String;)V
+}
+
+public final class com/chucker/logging/api/LoggingModule : com/chuckerteam/chucker/api/extramodule/ChuckerExtraModule {
+	public fun <init> (Landroid/content/Context;)V
+	public fun getModuleName ()Ljava/lang/String;
+	public fun onNavigateToModule (Landroid/content/Context;)V
+}
+
