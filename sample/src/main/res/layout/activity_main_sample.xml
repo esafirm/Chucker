@@ -88,10 +88,10 @@
             android:text="@string/add_fragment" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/add_tracker_log"
+            android:id="@+id/add_log"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:text="@string/add_tracker_log" />
+            android:text="@string/add_log" />
 
     </LinearLayout>
 

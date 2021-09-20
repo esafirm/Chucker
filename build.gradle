@@ -66,7 +66,7 @@ apiValidation {
             "com.chuckerteam.chucker.internal",
             "com.chuckerteam.chucker.databinding",
             "com.chucker.activity.databinding",
-            "com.chucker.tracker.databinding"
+            "com.chucker.logging.databinding"
     ]
 }
 

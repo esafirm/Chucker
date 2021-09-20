@@ -26,8 +26,8 @@ class LoggingCollectorImpl(
         }
         scope.launch {
             val stringifyMessage = gson.toJson(message)
-            val trackerLog = LogData(tag = tag, logString = stringifyMessage, timeStamp = System.currentTimeMillis())
-            LoggingRepositoryProvider.get().insertLog(trackerLog)
+            val logData = LogData(tag = tag, logString = stringifyMessage, timeStamp = System.currentTimeMillis())
+            LoggingRepositoryProvider.get().insertLog(logData)
         }
     }
 }

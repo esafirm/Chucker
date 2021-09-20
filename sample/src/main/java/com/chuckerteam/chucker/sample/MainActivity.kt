@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-            addTrackerLog?.setOnClickListener {
+            addLog?.setOnClickListener {
                 val map = mapOf(
                     "event" to "click",
                     "product" to "my product"
