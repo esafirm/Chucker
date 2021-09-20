@@ -9,7 +9,7 @@ class LoggingModule(
     app: Context
 ) : ChuckerExtraModule {
 
-    override val moduleName: String = "Tracker Log"
+    override val moduleName: String = "Logging"
 
     init {
         LoggingRepositoryProvider.initialize(app)
