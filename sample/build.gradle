@@ -68,8 +68,11 @@ dependencies {
     debugImplementation project(':library')
     debugImplementation project(':library-feature-flag')
     debugImplementation project(':library-extra-activity-info')
+    releaseImplementation project(':library-extra-activity-info-noop')
+
     debugImplementation project(':library-extra-logging')
     releaseImplementation project(':library-extra-logging-noop')
+    
     releaseImplementation project(':library-no-op')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"

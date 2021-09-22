@@ -19,5 +19,5 @@ android {
 }
 
 dependencies {
-    implementation project(':library')
+    implementation project(':library-no-op')
 }
