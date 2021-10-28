@@ -1,17 +1,23 @@
 package com.chucker.logging.api
 
-import android.util.Log
 import com.chucker.logging.internal.data.entity.LogData
 import com.chucker.logging.internal.data.repository.LoggingRepositoryProvider
+import com.chucker.logging.internal.support.BundleTypeAdapterFactory
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 
 class LoggingCollectorImpl(
     private val scope: CoroutineScope = MainScope(),
-    private val gson: Gson = Gson()
 ) : LoggingCollector {
+
+    private val gson: Gson by lazy {
+        GsonBuilder()
+            .registerTypeAdapterFactory(BundleTypeAdapterFactory())
+            .create()
+    }
 
     override fun sendLog(tag: String, message: String) {
         scope.launch {
@@ -30,10 +36,9 @@ class LoggingCollectorImpl(
                 val stringifyMessage = gson.toJson(message)
                 val logData = LogData(tag = tag, logString = stringifyMessage, timeStamp = System.currentTimeMillis())
                 LoggingRepositoryProvider.get().insertLog(logData)
-            } catch (e: Exception) {
-                Log.w(tag, message.toString())
+            } catch (e: Throwable) {
                 sendLog(tag, message.toString())
-                sendLog("error_parse", e.localizedMessage.orEmpty())
+                sendLog("chucker-error", e.localizedMessage.orEmpty())
             }
         }
     }

@@ -5,8 +5,8 @@ public abstract interface class com/chucker/logging/api/LoggingCollector {
 
 public final class com/chucker/logging/api/LoggingCollectorImpl : com/chucker/logging/api/LoggingCollector {
 	public fun <init> ()V
-	public fun <init> (Lkotlinx/coroutines/CoroutineScope;Lcom/google/gson/Gson;)V
-	public synthetic fun <init> (Lkotlinx/coroutines/CoroutineScope;Lcom/google/gson/Gson;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Lkotlinx/coroutines/CoroutineScope;)V
+	public synthetic fun <init> (Lkotlinx/coroutines/CoroutineScope;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun sendLog (Ljava/lang/String;Ljava/lang/Object;)V
 	public fun sendLog (Ljava/lang/String;Ljava/lang/String;)V
 }
@@ -33,6 +33,11 @@ public final class com/chucker/logging/internal/data/room/LoggingDatabase_Impl {
 	public fun <init> ()V
 	public fun clearAllTables ()V
 	public fun loggingDao ()Lcom/chucker/logging/internal/data/room/LoggingDao;
+}
+
+public class com/chucker/logging/internal/support/BundleTypeAdapterFactory : com/google/gson/TypeAdapterFactory {
+	public fun <init> ()V
+	public fun create (Lcom/google/gson/Gson;Lcom/google/gson/reflect/TypeToken;)Lcom/google/gson/TypeAdapter;
 }
 
 public final class com/chucker/logging/internal/ui/LogViewParam {
