@@ -48,10 +48,11 @@ internal class LoggingViewModel : ViewModel() {
     fun clearLog() {
         viewModelScope.launch {
             LoggingRepositoryProvider.get().deleteAllLog()
+            doQuery()
         }
     }
 
-    private fun doQuery() {
+    fun doQuery() {
         jobSearch?.cancel()
         jobSearch = viewModelScope.launch {
             val result = withContext(Dispatchers.IO) {

@@ -74,6 +74,11 @@ internal class LoggingActivity : AppCompatActivity() {
         viewModel.init()
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.doQuery()
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.chucker_logging_menu, menu)
         setUpSearch(menu)

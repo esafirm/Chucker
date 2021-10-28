@@ -1,5 +1,6 @@
 package com.chucker.logging.api
 
+import android.util.Log
 import com.chucker.logging.internal.data.entity.LogData
 import com.chucker.logging.internal.data.repository.LoggingRepositoryProvider
 import com.google.gson.Gson
@@ -25,9 +26,15 @@ class LoggingCollectorImpl(
             return
         }
         scope.launch {
-            val stringifyMessage = gson.toJson(message)
-            val logData = LogData(tag = tag, logString = stringifyMessage, timeStamp = System.currentTimeMillis())
-            LoggingRepositoryProvider.get().insertLog(logData)
+            try {
+                val stringifyMessage = gson.toJson(message)
+                val logData = LogData(tag = tag, logString = stringifyMessage, timeStamp = System.currentTimeMillis())
+                LoggingRepositoryProvider.get().insertLog(logData)
+            } catch (e: Exception) {
+                Log.w(tag, message.toString())
+                sendLog(tag, message.toString())
+                sendLog("error_parse", e.localizedMessage.orEmpty())
+            }
         }
     }
 }
