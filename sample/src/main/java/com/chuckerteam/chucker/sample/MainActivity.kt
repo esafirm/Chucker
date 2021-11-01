@@ -74,12 +74,69 @@ class MainActivity : AppCompatActivity() {
             }
 
             addLog?.setOnClickListener {
-                val map = mapOf(
-                    "event" to "click",
-                    "product" to "my product"
-                )
-                LoggingCollectorImpl().sendLog("tag1", "test")
-                Toast.makeText(applicationContext, map.toString(), Toast.LENGTH_SHORT).show()
+                val bundle = Bundle().apply {
+                    putString("startDate", "2021-10-30")
+                    putInt("departSelectedPrice", 538100)
+                    putString("vertical", "flight")
+                    putString("checkout_step", "1")
+                    putString("originCity", "JKT")
+                    putString("destinationCity", "DPS")
+                    putString("endDate", "")
+                    putString("journey", "depart")
+                    putString("departLowestPrice", "538100")
+                    putLong("orderId", 700125314L)
+                    putString("infant", "0")
+                    putString("transit", "0")
+                    putString("passenger", "1")
+                    putString("originAirport", "JKT")
+                    putString("paymentGroup", "promote_group")
+                    putString("specialCondition", "")
+                    putString("screenName", "paymentMethodList")
+                    putString("totalPayment", "538100")
+                    putString("returnLowestPrice", "0")
+                    putString("returnHighestPrice", "0")
+                    putInt("roundTrip", 0)
+                    putString("type", "")
+                    putString("adult", "1")
+                    putString("af_id", "1632826207617-8131621373172889803")
+                    putString("child", "0")
+                    putInt("showSeatLeftInfo", 0)
+                    putString("variant", "autoOffAntiGalau")
+                    putString("departAirline", "QG")
+                    putString("returnAirline", "")
+                    putString("departKeyword", "undefined")
+                    putString("paymentService", "bni")
+                    putString("totalTixPointEarned", "808")
+                    putInt("useInsurance", 0)
+                    putString("trackingId", "UA-122503490-1")
+                    putString("paymentMethod", "virtualAccount")
+                    putString("departHighestPrice", "1709100")
+                    putString("paymentTimeLeft", "224")
+                    putString("dev_key", "23yxb4TKEcPG2DZbpmfJWH")
+                    putString("returnSelectedPrice", "0")
+                    putString("seatClass", "economy")
+                    putString("destinationAirport", "DPS")
+                    putString("destinationKeyword", "undefined")
+                    putParcelableArrayList("items", arrayListOf(
+                        Bundle().apply {
+                            putString("item_name", "JKTC-CPSC")
+                            putString("item_brand", "citilink indonesia")
+                            putLong("quantity", 1L)
+                            putString("item_variant", "adult")
+                            putDouble("price", 538100.0)
+                            putString("item_category", "flight")
+                            putString("currency", "IDR")
+                            putString("item_id", "HLP-DPS")
+                        }
+                    ))
+                }
+                val map = hashMapOf<String, Any?>()
+                val iterator = bundle.keySet().iterator()
+                while (iterator.hasNext()) {
+                    val key = iterator.next()
+                    map[key] = bundle.get(key)
+                }
+                LoggingCollectorImpl().sendLog("tracker", map)
             }
         }
 
