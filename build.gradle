@@ -50,7 +50,7 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:$androidGradleVersion"
         classpath "de.mannodermaus.gradle.plugins:android-junit5:$junitGradlePluignVersion"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.30"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10"
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokkaVersion"
         classpath "org.jetbrains.kotlinx:binary-compatibility-validator:$binaryCompatibilityValidator"
         classpath "com.squareup.wire:wire-gradle-plugin:$wireVersion"
